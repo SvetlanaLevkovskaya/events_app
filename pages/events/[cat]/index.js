@@ -8,9 +8,9 @@ const EventPerCityPage = ({data, pageName}) => {
             {data.map(ev => (
               <Link key={ev.id} href={`/events/${ev.city}/${ev.id}`} passHref>
 
-                      <Image width={300} height={300} src={ev.image} alt={ev.title}/>
-                      <h2>{ev.title}</h2>
-                      <p>{ev.description}</p>
+                  <Image width={300} height={300} src={ev.image} alt={ev.title} />
+                  <h2>{ev.title}</h2>
+                  <p>{ev.description}</p>
 
               </Link>
 
@@ -25,14 +25,14 @@ export default EventPerCityPage;
 
 export async function getStaticPaths() {
 
-    const {events_categories} = await import('/data/data.json')
+    const {events_categories} = await import("/data/data.json");
     const allPath = events_categories.map(ev => {
         return {
             params: {
                 cat: ev.id.toString()
             }
-        }
-    })
+        };
+    });
 
     return {
         paths: allPath,
@@ -43,8 +43,8 @@ export async function getStaticPaths() {
 export async function getStaticProps(contex) {
     //console.log(contex);
     const id = contex?.params.cat;
-    const {allEvents} = await import('/data/data.json')
-    const data = allEvents.filter(d => d.city === id)
+    const {allEvents} = await import("/data/data.json");
+    const data = allEvents.filter(d => d.city === id);
     //console.log(data);
     return {
         props: {
@@ -52,6 +52,6 @@ export async function getStaticProps(contex) {
             pageName: id,
 
         }
-    }
+    };
 }
 
