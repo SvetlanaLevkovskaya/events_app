@@ -1,13 +1,10 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import styles from "../styles/Home.module.css";
-import Image from "next/image";
-import Link from "next/link";
+import HomePage from "@/components/home/home-page";
 
 const inter = Inter({subsets: [ "latin" ]});
 
 export default function Home({data}) {
-
     return (
       <>
           <Head>
@@ -17,37 +14,15 @@ export default function Home({data}) {
               <link rel="icon" href="/favicon.ico" />
           </Head>
 
-          <header>
-              <nav>
-                  <Link href="/">Home</Link>
-                  <Link href="/events">Events</Link>
-                  <Link href="/about-us"> About us</Link>
 
-              </nav>
-          </header>
+          <HomePage data={data} />
 
-          <main className={styles.main}>
-              {data.map(ev => (
-                <Link key={ev.id} href={`/events/${ev.id}`} passHref>
-                    <Image width={200} height={200} alt={ev.title} src={ev.image} />
-                    <h2>{ev.title}</h2>
-                    <p>{ev.description}</p>
-                </Link>
-              ))}
-          </main>
-
-          <footer className={styles.footer}>
-              <p> © 2022 Time to Code - A Project Built with Next.js </p>
-          </footer>
       </>
     );
 }
 
 export async function getServerSideProps() {
     const {events_categories} = await import("/data/data.json");
-    /*const res = await fetch('url')
-     const data = await res.json()*/
-
     return {
         props: {
             data: events_categories,
