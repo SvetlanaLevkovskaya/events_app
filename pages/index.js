@@ -14,7 +14,6 @@ export default function Home({data}) {
               <link rel="icon" href="/favicon.ico" />
           </Head>
 
-
           <HomePage data={data} />
 
       </>
