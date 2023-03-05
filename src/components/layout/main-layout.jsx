@@ -4,6 +4,7 @@ import Footer from "@/components/footer/footer";
 
 
 const MainLayout = ({children}) => {
+
     return (
       <>
           <Header />
@@ -12,7 +13,7 @@ const MainLayout = ({children}) => {
           </main>
           <Footer />
       </>
-    );
-};
+    )
+}
 
-export default MainLayout;
+export default MainLayout
